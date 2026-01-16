@@ -1,23 +1,35 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-    Map<Character, Integer> map = new HashMap<>(); // Stores char -> index
-    int i = 0; // Left pointer
-    int max = 0;
+        int left = 0;
+        int right = 0;
+        int maxLength = 0;
+        
+        // This Set stores characters currently in the window [left, right]
+        Set<Character> window = new HashSet<>();
 
-    for (int j = 0; j < s.length(); j++) { // j is Right pointer
-        char c = s.charAt(j);
-        
-        // If we have seen this char AND it is inside the current window
-        if (map.containsKey(c) && map.get(c) >= i) {
-            // Jump left pointer to right after the previous instance
-            i = map.get(c) + 1;
+        while (right < s.length()) {
+            char currentChar = s.charAt(right);
+
+            // If the character is ALREADY in the set, we have a duplicate!
+            // We must SHRINK the window from the left until the duplicate is removed.
+            while (window.contains(currentChar)) {
+                window.remove(s.charAt(left));
+                left++;
+            }
+
+            // Now the window is valid (duplicate is gone or never existed).
+            // Add the new character.
+            window.add(currentChar);
+            
+            // Update the maximum length found so far
+            maxLength = Math.max(maxLength, right - left + 1);
+            
+            // Move right pointer forward
+            right++;
         }
-        
-        map.put(c, j); // Update latest index of char
-        max = Math.max(max, j - i + 1);
+
+        return maxLength;
     }
-    return max;
-}
 
     /*
      public int lengthOfLongestSubstring(String s) {
@@ -56,5 +68,28 @@ class Solution {
         
         return maxLength;
     }
+
+    // 2nd
+
+    public int lengthOfLongestSubstring(String s) {
+    Map<Character, Integer> map = new HashMap<>(); // Stores char -> index
+    int i = 0; // Left pointer
+    int max = 0;
+
+    for (int j = 0; j < s.length(); j++) { // j is Right pointer
+        char c = s.charAt(j);
+        
+        // If we have seen this char AND it is inside the current window
+        if (map.containsKey(c) && map.get(c) >= i) {
+            // Jump left pointer to right after the previous instance
+            i = map.get(c) + 1;
+        }
+        
+        map.put(c, j); // Update latest index of char
+        max = Math.max(max, j - i + 1);
+    }
+    return max;
+}
+
      */
 }
