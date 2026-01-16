@@ -1,34 +1,20 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int left = 0;
-        int right = 0;
-        int maxLength = 0;
-        
-        // This Set stores characters currently in the window [left, right]
-        Set<Character> window = new HashSet<>();
-
-        while (right < s.length()) {
-            char currentChar = s.charAt(right);
-
-            // If the character is ALREADY in the set, we have a duplicate!
-            // We must SHRINK the window from the left until the duplicate is removed.
-            while (window.contains(currentChar)) {
-                window.remove(s.charAt(left));
-                left++;
+        Map<Character,Integer> map = new HashMap<>();
+        Set<Character> set = new HashSet<>();
+        int i=0;
+        int max=0;
+        for(int j=0;j<s.length();j++){
+            char c = s.charAt(j);
+            if(map.containsKey(c)){
+                if(map.get(c)>=i){
+                    i=map.get(c)+1;
+                }
             }
-
-            // Now the window is valid (duplicate is gone or never existed).
-            // Add the new character.
-            window.add(currentChar);
-            
-            // Update the maximum length found so far
-            maxLength = Math.max(maxLength, right - left + 1);
-            
-            // Move right pointer forward
-            right++;
+            map.put(c,j);
+            max = Math.max(max,j-i+1);
         }
-
-        return maxLength;
+        return max;
     }
 
     /*
