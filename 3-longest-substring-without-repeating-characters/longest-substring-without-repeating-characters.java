@@ -1,21 +1,23 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        Map<Character,Integer> map = new HashMap<>();
-        Set<Character> set = new HashSet<>();
-        int i=0;
-        int max=0;
-        for(int j=0;j<s.length();j++){
-            char c = s.charAt(j);
-            if(map.containsKey(c)){
-                if(map.get(c)>=i){
-                    i=map.get(c)+1;
-                }
-            }
-            map.put(c,j);
-            max = Math.max(max,j-i+1);
+    Map<Character, Integer> map = new HashMap<>(); // Stores char -> index
+    int i = 0; // Left pointer
+    int max = 0;
+
+    for (int j = 0; j < s.length(); j++) { // j is Right pointer
+        char c = s.charAt(j);
+        
+        // If we have seen this char AND it is inside the current window
+        if (map.containsKey(c) && map.get(c) >= i) {
+            // Jump left pointer to right after the previous instance
+            i = map.get(c) + 1;
         }
-        return max;
+        
+        map.put(c, j); // Update latest index of char
+        max = Math.max(max, j - i + 1);
     }
+    return max;
+}
 
     /*
      public int lengthOfLongestSubstring(String s) {
