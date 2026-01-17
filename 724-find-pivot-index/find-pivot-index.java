@@ -11,7 +11,7 @@ class Solution {
 
         // 3. Iterate through the array to find the pivot
         for (int i = 0; i < nums.length; i++) {
-            // We calculate rightSum on the fly using the formula
+            // We calculate rightSum on the fly using the formula // leftsum +arr[i]+ rightsum = totalsum
             int rightSum = totalSum - leftSum - nums[i];
 
             // 4. Check if we found the pivot
