@@ -8,7 +8,7 @@ class Solution {
             char c = s.charAt(j);
             counts[c-'A']++;
             maxC = Math.max(counts[c-'A'],maxC);
-            if((j-i+1)-maxC >k){
+            while((j-i+1)-maxC >k){
                 char left =s.charAt(i);
                 counts[left-'A']--;
                 i++;
