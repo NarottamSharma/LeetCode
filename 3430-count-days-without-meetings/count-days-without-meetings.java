@@ -5,7 +5,9 @@ class Solution {
         // 1. Sort meetings by start time. 
         // This organizes the timeline so we can scan left-to-right.
         Arrays.sort(meetings, (a, b) -> Integer.compare(a[0], b[0]));
-
+        //   [[5,7],[1,3],[9,10]]
+        //   [[1,3],[5,7],[9,10]]
+        //     s     e
         long freeDays = 0; // Use long just in case, though int fits in return type
         int lastBusyDay = 0; // Tracks the furthest day we are occupied
 
