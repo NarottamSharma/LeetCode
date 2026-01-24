@@ -8,7 +8,7 @@ class Solution {
         //   [[5,7],[1,3],[9,10]]
         //   [[1,3],[5,7],[9,10]]
         //     s     e
-        long freeDays = 0; // Use long just in case, though int fits in return type
+        int freeDays = 0; // Use long just in case, though int fits in return type
         int lastBusyDay = 0; // Tracks the furthest day we are occupied
 
         for (int[] meeting : meetings) {
@@ -34,6 +34,6 @@ class Solution {
             freeDays += (days - lastBusyDay);
         }
 
-        return (int) freeDays;
+        return freeDays;
     }
 }
