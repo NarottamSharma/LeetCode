@@ -8,7 +8,10 @@ class Solution {
             
             if (sum == target) {
                 // Return the 0-based indices
-                return new int[]{i+1, j+1}; 
+                return new int[]{
+                    i+1, 
+                    j+1
+                }; 
                 
                 // Note: Some platforms (like LeetCode) ask for 1-based indices.
                 // In that case, you would return: new int[]{i + 1, j + 1};
