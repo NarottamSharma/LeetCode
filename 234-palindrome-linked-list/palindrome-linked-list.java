@@ -10,6 +10,25 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
+        List<Integer> list = new ArrayList<>();
+        while(head!=null){
+            list.add(head.val);
+            head = head.next;
+        }
+        int i=0, j=list.size()-1;
+        while(i<=j){
+            if(list.get(i)!=list.get(j)){
+                return false;
+            }
+            i++;j--;
+        }
+        return true;
+    
+    }
+}
+
+/**
+public boolean isPalindrome(ListNode head) {
         if (head == null || head.next == null) return true;
 
         // STEP 1: Find the Middle (Slow/Fast Pointers)
@@ -56,3 +75,4 @@ class Solution {
         return prev; // 'prev' is the new head of the reversed list
     }
 }
+ */
