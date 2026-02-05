@@ -1,6 +1,7 @@
 import java.util.*;
 
 class MedianFinder {
+    
     // Left side (Max Heap) stores the smaller half
     private PriorityQueue<Integer> leftHeap;
     // Right side (Min Heap) stores the larger half
